@@ -2,18 +2,24 @@
 
 require "functions.php";
 
-$uri = parse_url($_SERVER["REQUEST_URI"])["path"];
+// require "router.php";
 
-// Routes
-if ($uri === '/') {
 
-    require "controllers/index.php";
-    
-} else if ($uri === '/about') {
-    
-    require "controllers/about.php";
+// Connect To Our MySQL Database
+$dsn = "mysql:host=localhost;port=3306;dbname=myapp;user=root;charset=utf8mb4";
+$pdo = new PDO($dsn);
 
-} elseif ($uri === '/contact') {
-    
-    require "controllers/contact.php";
-}
+// Prepare & Execute SQL Query To Database
+$statement = $pdo->prepare("SELECT * FROM posts");
+$statement->execute();
+
+// Get All The Record Results From The Executed Query
+// ::FETCH_ASSOC To Receive Only Associative Array Results
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+foreach ($posts as $post) :
+
+    echo "<li>" . $post["title"] . "</li>";
+
+endforeach;
