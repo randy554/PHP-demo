@@ -16,12 +16,12 @@ class Database {
 
     }
 
-    public function query ($query) {
+    public function query ($query, $params = []) {
 
 
         // Prepare & Execute SQL Query To Database
         $statement = $this->connection->prepare($query);
-        $statement->execute();
+        $statement->execute($params);
 
 
         return $statement;
