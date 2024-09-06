@@ -13,27 +13,12 @@ $note = $db->query("SELECT * FROM notes WHERE id = ?", [
     
     $_GET["id"]
     
-])->fetch();
-
-// Query DB With SQL Injection In Mind - Method 2
-// $note = $db->query("SELECT * FROM notes WHERE id = :id", [
-    
-//     "id" => $_GET["id"]
-    
-// ])->fetch();
+])->findOrFail();
 
 
+// Show 403, If Unauthorized Access Occurs
+authorize($note['user_id'] === $currentUserId);
 
-// Show 404, If Note Doesn't Exist In DB
-if (!$note) {
-    abort();
-}
-
-
-// Show 404, If If Unauthorized Access Occurs
-if ($note['user_id'] !== $currentUserId) {
-    abort(Response::FORBIDDEN);
-}
 
 require "views/note.view.php";
 

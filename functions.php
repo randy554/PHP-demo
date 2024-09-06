@@ -1,19 +1,31 @@
 <?php
 
-// Var_dump & die function
-function dd ($value) {
+    // Var_dump & die function
+    function dd ($value) {
 
-    echo "<pre>";
+        echo "<pre>";
 
-        var_dump($value);
+            var_dump($value);
 
-    echo "</pre>";
+        echo "</pre>";
 
-    die();
-}
+        die();
+    }
 
-// Clean URI check function
-function urlIs($value) {
-    return $_SERVER['REQUEST_URI'] === $value;
-}
+    
+    // Clean URI check function
+    function urlIs($value) {
 
+        return $_SERVER['REQUEST_URI'] === $value;
+
+    }
+
+
+    // Show 403, If Unauthorized Access Occurs
+    function authorize ($condition, $status = Response::FORBIDDEN) {
+
+        if (! $condition) {
+            abort($status);
+        }
+
+    }
