@@ -29,12 +29,9 @@
                         <label for="body" class="block text-sm font-medium leading-6 text-gray-900">Body</label>
 
                         <div class="mt-2">
-                            <textarea id="body" name="body" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Here is an idea for a note...">
-
-                                <!-- Form validation: User made a submission mistake. So show user input here, for them to edit and re-submit -->
-                                <?= isset($errors['body']) ? $_POST['body'] : '' ?>
-
-                            </textarea>
+                            <!-- Form validation: User made a submission mistake. So show user input here, for them to edit and re-submit -->
+                            <textarea id="body" name="body" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Here is an idea for a note..."
+                            ><?= isset($errors['body']) ? $_POST['body'] : '' ?></textarea>
 
                             <?php if(isset($errors['body'])): ?>
 
